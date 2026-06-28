@@ -1,5 +1,63 @@
 # Revision Log
 
+## Build LEADPILOT-1.0.0
+
+**Date:** 2026-06-28  
+**Build Name:** Smart Lead Funnel Foundation  
+**Repository:** revpip/tradepilot-ai
+
+### Purpose
+
+Turn LeadPilot from a placeholder into a working lead capture system that can receive website enquiries, save them to the custom lead table and display them inside the WordPress admin area.
+
+### Added
+
+- LeadPilot public shortcode: `[tradepilot_lead_form]`.
+- Service selector.
+- Job description field.
+- Postcode field.
+- Budget range selector.
+- Urgency selector.
+- Customer name, phone and email fields.
+- Consent checkbox.
+- Public form styling.
+- Nonce-protected public form submission.
+- Lead saving into `{prefix}tradepilot_leads`.
+- Lead audit event recording.
+- LeadPilot data layer.
+- LeadPilot admin lead list.
+- LeadPilot admin lead detail screen.
+- LeadPilot menu callback for the TradePilot AI Leads screen.
+
+### Changed
+
+- Plugin version bumped to 0.5.0.
+- LeadPilot module version bumped to 1.0.0.
+- Module registry now reports LeadPilot v1.0.0.
+
+### Deferred
+
+- Photo upload handling.
+- Dynamic trade-specific question branching.
+- AI lead scoring.
+- Lead status editing.
+- Email/customer notifications.
+
+### Next Build Target
+
+**LEADPILOT-1.1.0 — Dynamic Questions, Lead Statuses & Notifications**
+
+Planned:
+
+- Dynamic questions by service type.
+- Lead status update controls.
+- Admin notes.
+- Email notification to business.
+- Customer acknowledgement email.
+- Service-area matching.
+
+---
+
 ## Build TP-CORE-0.4.0
 
 **Date:** 2026-06-28  
@@ -36,29 +94,6 @@ Add the first durable platform layer so TradePilot AI can safely store leads, pe
 - Module manager now saves enabled/disabled states.
 - Dashboard new lead count now reads from the lead table.
 
-### Deferred
-
-- Full lead list screen.
-- Lead detail screen.
-- Public lead funnel shortcode.
-- Photo upload handling.
-- AI scoring connection.
-
-### Next Build Target
-
-**LEADPILOT-1.0.0 — Smart Lead Funnel Foundation**
-
-Planned:
-
-- Front-end lead shortcode.
-- Service selector.
-- Customer details capture.
-- Postcode capture.
-- Budget and urgency capture.
-- Lead save to custom table.
-- Admin lead list.
-- Admin lead detail view.
-
 ---
 
 ## Build TP-CORE-0.3.0
@@ -86,12 +121,6 @@ Create the first usable WordPress admin framework and module registry so TradePi
 - Admin stylesheet.
 - Module placeholders for LeadPilot, QuotePilot, RoutePilot, ReplyPilot, ReviewPilot, InsightPilot and FranchisePilot.
 - Architecture folders for AI, database, security and templates.
-
-### Changed
-
-- Plugin version bumped to 0.3.0.
-- Core loader now loads module, settings and audit frameworks.
-- Activator now persists module registry and default settings.
 
 ---
 
