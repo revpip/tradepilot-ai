@@ -2,8 +2,8 @@
 /**
  * TradePilot AI
  * Module: LeadPilot Data Layer
- * Function: Saves and reads leads from the custom TradePilot lead table.
- * Version: 1.0.0
+ * Function: Saves, reads and filters leads from the custom TradePilot lead table.
+ * Version: 1.4.0
  *
  * @package TradePilotAI
  */
@@ -14,12 +14,6 @@ if (!defined('ABSPATH')) {
 
 class LeadPilot_Leads {
 
-    /**
-     * LeadPilot
-     * Module: Lead Data
-     * Function: Insert a new lead into the custom leads table.
-     * Version: 1.0.0
-     */
     public static function create($data) {
         global $wpdb;
 
@@ -28,6 +22,12 @@ class LeadPilot_Leads {
         }
 
         $now = current_time('mysql');
+        $meta = isset($data['meta']) && is_array($data['meta']) ? $data['meta'] : array();
+        $meta['dynamic_answers'] = array(
+            'property_type' => self::clean($data, 'property_type'),
+            'issue_type' => self::clean($data, 'issue_type'),
+            'preferred_contact_time' => self::clean($data, 'preferred_contact_time'),
+        );
 
         $record = array(
             'source'         => self::clean($data, 'source', 'website'),
@@ -42,7 +42,7 @@ class LeadPilot_Leads {
             'budget_range'   => self::clean($data, 'budget_range'),
             'urgency'        => self::clean($data, 'urgency'),
             'description'    => self::textarea($data, 'description'),
-            'meta'           => wp_json_encode(isset($data['meta']) && is_array($data['meta']) ? $data['meta'] : array()),
+            'meta'           => wp_json_encode($meta),
             'assigned_to'    => null,
             'created_at'     => $now,
             'updated_at'     => $now,
@@ -61,77 +61,65 @@ class LeadPilot_Leads {
         return (int) $wpdb->insert_id;
     }
 
-    /**
-     * LeadPilot
-     * Module: Lead Data
-     * Function: Return recent leads for admin display.
-     * Version: 1.0.0
-     */
     public static function recent($limit = 50) {
-        global $wpdb;
-
-        $limit = absint($limit);
-        $limit = $limit > 0 ? min($limit, 100) : 50;
-
-        return $wpdb->get_results(
-            $wpdb->prepare(
-                'SELECT * FROM ' . TradePilot_Database::leads_table() . ' ORDER BY id DESC LIMIT %d',
-                $limit
-            ),
-            ARRAY_A
-        );
+        return self::query(array(), $limit);
     }
 
-    /**
-     * LeadPilot
-     * Module: Lead Data
-     * Function: Return one lead by ID.
-     * Version: 1.0.0
-     */
+    public static function query($filters = array(), $limit = 100) {
+        global $wpdb;
+
+        $where = array('1=1');
+        $args = array();
+
+        if (!empty($filters['status'])) {
+            $where[] = 'status = %s';
+            $args[] = sanitize_key($filters['status']);
+        }
+
+        if (!empty($filters['service_type'])) {
+            $where[] = 'service_type = %s';
+            $args[] = sanitize_text_field($filters['service_type']);
+        }
+
+        if (!empty($filters['urgency'])) {
+            $where[] = 'urgency = %s';
+            $args[] = sanitize_text_field($filters['urgency']);
+        }
+
+        $limit = max(1, min(absint($limit), 200));
+        $sql = 'SELECT * FROM ' . TradePilot_Database::leads_table() . ' WHERE ' . implode(' AND ', $where) . ' ORDER BY id DESC LIMIT %d';
+        $args[] = $limit;
+
+        return $wpdb->get_results($wpdb->prepare($sql, $args), ARRAY_A);
+    }
+
     public static function get($lead_id) {
         global $wpdb;
 
         $lead_id = absint($lead_id);
-
         if (!$lead_id) {
             return null;
         }
 
         return $wpdb->get_row(
-            $wpdb->prepare(
-                'SELECT * FROM ' . TradePilot_Database::leads_table() . ' WHERE id = %d',
-                $lead_id
-            ),
+            $wpdb->prepare('SELECT * FROM ' . TradePilot_Database::leads_table() . ' WHERE id = %d', $lead_id),
             ARRAY_A
         );
     }
 
-    /**
-     * LeadPilot
-     * Module: Lead Data
-     * Function: Get a sanitised text value from incoming data.
-     * Version: 1.0.0
-     */
+    public static function meta($lead) {
+        $meta = !empty($lead['meta']) ? json_decode($lead['meta'], true) : array();
+        return is_array($meta) ? $meta : array();
+    }
+
     private static function clean($data, $key, $default = '') {
         return isset($data[$key]) ? sanitize_text_field(wp_unslash($data[$key])) : $default;
     }
 
-    /**
-     * LeadPilot
-     * Module: Lead Data
-     * Function: Get a sanitised textarea value from incoming data.
-     * Version: 1.0.0
-     */
     private static function textarea($data, $key) {
         return isset($data[$key]) ? sanitize_textarea_field(wp_unslash($data[$key])) : '';
     }
 
-    /**
-     * LeadPilot
-     * Module: Lead Data
-     * Function: Get a sanitised email value from incoming data.
-     * Version: 1.0.0
-     */
     private static function email($data, $key) {
         $email = isset($data[$key]) ? sanitize_email(wp_unslash($data[$key])) : '';
         return is_email($email) ? $email : '';
