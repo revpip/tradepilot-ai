@@ -3,7 +3,7 @@
  * Plugin Name: TradePilot AI
  * Plugin URI:  https://github.com/revpip/tradepilot-ai
  * Description: Intelligent operating system for trade businesses: leads, quotes, routing, automation, reviews, analytics and franchise growth.
- * Version:     0.8.0
+ * Version:     0.9.0
  * Author:      TradePilot AI
  * Text Domain: tradepilot-ai
  * Domain Path: /languages
@@ -19,9 +19,9 @@ if (!defined('ABSPATH')) {
  * TradePilot Core
  * Module: Bootstrap
  * Function: Defines core constants and starts the plugin.
- * Version: 0.8.0
+ * Version: 0.9.0
  */
-define('TRADEPILOT_AI_VERSION', '0.8.0');
+define('TRADEPILOT_AI_VERSION', '0.9.0');
 define('TRADEPILOT_AI_FILE', __FILE__);
 define('TRADEPILOT_AI_PATH', plugin_dir_path(__FILE__));
 define('TRADEPILOT_AI_URL', plugin_dir_url(__FILE__));
