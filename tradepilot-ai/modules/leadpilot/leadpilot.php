@@ -16,9 +16,11 @@ require_once __DIR__ . '/class-leadpilot-leads.php';
 require_once __DIR__ . '/class-leadpilot-notifications.php';
 require_once __DIR__ . '/class-leadpilot.php';
 require_once __DIR__ . '/class-leadpilot-admin.php';
+require_once __DIR__ . '/class-leadpilot-admin-actions.php';
 
 LeadPilot::init();
 
 if (is_admin()) {
     LeadPilot_Admin::init();
+    LeadPilot_Admin_Actions::init();
 }
