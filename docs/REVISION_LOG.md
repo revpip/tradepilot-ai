@@ -1,5 +1,35 @@
 # Revision Log
 
+## Build LEADPILOT-1.3.0
+
+**Date:** 2026-06-28  
+**Build Name:** Admin Photo Preview & Lead Action Refinement  
+**Repository:** revpip/tradepilot-ai
+
+### Purpose
+
+Improve the LeadPilot admin workflow by showing uploaded photos directly on lead detail screens and wiring lead actions into the persistent status helper.
+
+### Added
+
+- Admin photo preview grid.
+- Uploaded photo links on lead detail screens.
+- Lead action form on lead detail screens.
+- Status action wired to persistence helper.
+- Admin styles for photo previews.
+
+### Changed
+
+- Plugin version bumped to 0.8.0.
+- LeadPilot module version bumped to 1.3.0.
+- Module registry now reports LeadPilot v1.3.0.
+
+### Next Build Target
+
+**LEADPILOT-1.4.0 — Lead Filters & Admin Workflow Polish**
+
+---
+
 ## Build LEADPILOT-1.2.0
 
 **Date:** 2026-06-28  
@@ -18,16 +48,6 @@ Add persistent status helper support and allow customers to attach job photos du
 - JPG, PNG and WEBP checks.
 - Upload metadata attached to lead submissions.
 - LeadPilot status persistence helper.
-
-### Changed
-
-- Plugin version bumped to 0.7.0.
-- LeadPilot module version bumped to 1.2.0.
-- Module registry now reports LeadPilot v1.2.0.
-
-### Next Build Target
-
-**LEADPILOT-1.3.0 — Admin Photo Preview & Lead Action Refinement**
 
 ---
 
@@ -78,7 +98,3 @@ Turn LeadPilot from a placeholder into a working lead capture system that can re
 - Nonce-protected public form submission.
 - Lead saving into `{prefix}tradepilot_leads`.
 - Lead audit event recording.
-- LeadPilot data layer.
-- LeadPilot admin lead list.
-- LeadPilot admin lead detail screen.
-- LeadPilot menu callback for the TradePilot AI Leads screen.
