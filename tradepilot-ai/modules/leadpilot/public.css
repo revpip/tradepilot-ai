@@ -1,0 +1,84 @@
+.leadpilot-form-wrap {
+    max-width: 760px;
+    margin: 32px auto;
+    padding: 28px;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+}
+
+.leadpilot-header h2 {
+    margin: 0 0 8px;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.05;
+}
+
+.leadpilot-kicker {
+    margin: 0 0 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 12px;
+}
+
+.leadpilot-form label {
+    display: block;
+    margin: 18px 0;
+    font-weight: 700;
+}
+
+.leadpilot-form input,
+.leadpilot-form select,
+.leadpilot-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 8px;
+    padding: 13px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font: inherit;
+}
+
+.leadpilot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.leadpilot-consent {
+    display: flex !important;
+    align-items: flex-start;
+    gap: 10px;
+    font-weight: 500 !important;
+}
+
+.leadpilot-consent input {
+    width: auto;
+    margin-top: 3px;
+}
+
+.leadpilot-form button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 14px 24px;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.leadpilot-success {
+    margin: 18px 0;
+    padding: 14px 16px;
+    border-radius: 10px;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+}
+
+.leadpilot-footnote {
+    margin-top: 16px;
+    font-size: 13px;
+    opacity: 0.75;
+}
