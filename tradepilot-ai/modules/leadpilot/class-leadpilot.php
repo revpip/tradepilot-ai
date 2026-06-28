@@ -3,7 +3,7 @@
  * TradePilot AI
  * Module: LeadPilot
  * Function: Public lead funnel, shortcode and form submission handler.
- * Version: 1.1.0
+ * Version: 1.2.0
  *
  * @package TradePilotAI
  */
@@ -41,7 +41,7 @@ class LeadPilot {
                 <div class="leadpilot-success">Thank you — your enquiry has been received. We will review it and come back to you shortly.</div>
             <?php endif; ?>
 
-            <form method="post" action="<?php echo esc_url($action); ?>" class="leadpilot-form">
+            <form method="post" enctype="multipart/form-data" action="<?php echo esc_url($action); ?>" class="leadpilot-form">
                 <input type="hidden" name="action" value="tradepilot_submit_lead" />
                 <input type="hidden" name="source" value="website" />
                 <?php wp_nonce_field('tradepilot_submit_lead', 'leadpilot_nonce'); ?>
@@ -121,11 +121,8 @@ class LeadPilot {
                     </label>
                 </div>
 
-                <label>Do you have photos ready?
-                    <select name="has_photos">
-                        <option value="No">No</option>
-                        <option value="Yes">Yes</option>
-                    </select>
+                <label>Upload helpful photos
+                    <input type="file" name="lead_photos[]" multiple accept="image/jpeg,image/png,image/webp" />
                 </label>
 
                 <div class="leadpilot-grid">
@@ -168,13 +165,16 @@ class LeadPilot {
             wp_die(esc_html__('Please confirm consent so we can contact you about this enquiry.', 'tradepilot-ai'));
         }
 
+        $uploads = LeadPilot_Upload_Helper::collect('lead_photos');
+        $_POST['meta'] = array('uploads' => $uploads);
+
         $lead_id = LeadPilot_Leads::create($_POST);
 
         if (!$lead_id) {
             wp_die(esc_html__('Sorry, the enquiry could not be saved. Please try again.', 'tradepilot-ai'));
         }
 
-        TradePilot_Audit_Log::record('lead_created', 'New LeadPilot enquiry received.', array('lead_id' => $lead_id));
+        TradePilot_Audit_Log::record('lead_created', 'New LeadPilot enquiry received.', array('lead_id' => $lead_id, 'uploads' => count($uploads)));
         LeadPilot_Notifications::send_new_lead_notifications($lead_id);
 
         $redirect = wp_get_referer() ? wp_get_referer() : home_url('/');
