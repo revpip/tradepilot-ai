@@ -1,5 +1,66 @@
 # Revision Log
 
+## Build TP-CORE-0.4.0
+
+**Date:** 2026-06-28  
+**Build Name:** Database, Settings Forms & Audit Persistence  
+**Repository:** revpip/tradepilot-ai
+
+### Purpose
+
+Add the first durable platform layer so TradePilot AI can safely store leads, persist audit events, save settings and manage modules through protected admin forms.
+
+### Added
+
+- Custom database installer.
+- Audit log custom table.
+- Lead custom table skeleton.
+- Database schema documentation.
+- Security helper class.
+- Nonce-protected settings save handler.
+- Nonce-protected module save handler.
+- Module enable/disable checkboxes.
+- General settings form.
+- Service area settings.
+- AI threshold settings.
+- Database-backed audit logging.
+- Recent audit events table on the Logs screen.
+- Automatic upgrade runner when plugin version changes.
+
+### Changed
+
+- Plugin version bumped to 0.4.0.
+- Activator now installs database tables.
+- Core loader now loads database and security layers.
+- Settings screen now saves real values.
+- Module manager now saves enabled/disabled states.
+- Dashboard new lead count now reads from the lead table.
+
+### Deferred
+
+- Full lead list screen.
+- Lead detail screen.
+- Public lead funnel shortcode.
+- Photo upload handling.
+- AI scoring connection.
+
+### Next Build Target
+
+**LEADPILOT-1.0.0 — Smart Lead Funnel Foundation**
+
+Planned:
+
+- Front-end lead shortcode.
+- Service selector.
+- Customer details capture.
+- Postcode capture.
+- Budget and urgency capture.
+- Lead save to custom table.
+- Admin lead list.
+- Admin lead detail view.
+
+---
+
 ## Build TP-CORE-0.3.0
 
 **Date:** 2026-06-28  
@@ -31,26 +92,6 @@ Create the first usable WordPress admin framework and module registry so TradePi
 - Plugin version bumped to 0.3.0.
 - Core loader now loads module, settings and audit frameworks.
 - Activator now persists module registry and default settings.
-
-### Deferred
-
-- Module enable/disable form controls.
-- Persistent database-backed audit log.
-- Custom lead database tables.
-- Nonce-protected settings save actions.
-
-### Next Build Target
-
-**TP-CORE-0.4.0 — Database, Settings Forms & Audit Persistence**
-
-Planned:
-
-- Custom database installer.
-- Audit log table.
-- Lead table skeleton.
-- Settings save handlers.
-- Module enable/disable controls.
-- Service area settings.
 
 ---
 
