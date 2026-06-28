@@ -3,7 +3,7 @@
  * TradePilot Core
  * Module: Module Registry
  * Function: Registers and loads TradePilot intelligence modules.
- * Version: 1.1.0
+ * Version: 1.2.0
  *
  * @package TradePilotAI
  */
@@ -19,7 +19,7 @@ class TradePilot_Modules {
             'leadpilot' => array(
                 'name'        => 'LeadPilot',
                 'description' => 'Smart lead capture, qualification and scoring.',
-                'version'     => '1.1.0',
+                'version'     => '1.2.0',
                 'file'        => 'modules/leadpilot/leadpilot.php',
                 'enabled'     => true,
             ),
