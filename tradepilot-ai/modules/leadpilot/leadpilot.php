@@ -3,7 +3,7 @@
  * TradePilot AI
  * Module: LeadPilot
  * Function: Smart lead capture and qualification module bootstrap.
- * Version: 1.2.0
+ * Version: 1.3.0
  *
  * @package TradePilotAI
  */
