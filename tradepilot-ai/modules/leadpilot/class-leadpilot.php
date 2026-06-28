@@ -3,7 +3,7 @@
  * TradePilot AI
  * Module: LeadPilot
  * Function: Public lead funnel, shortcode and form submission handler.
- * Version: 1.0.0
+ * Version: 1.1.0
  *
  * @package TradePilotAI
  */
@@ -14,12 +14,6 @@ if (!defined('ABSPATH')) {
 
 class LeadPilot {
 
-    /**
-     * LeadPilot
-     * Module: Bootstrap
-     * Function: Register public hooks.
-     * Version: 1.0.0
-     */
     public static function init() {
         add_shortcode('tradepilot_lead_form', array(__CLASS__, 'render_shortcode'));
         add_action('wp_enqueue_scripts', array(__CLASS__, 'enqueue_assets'));
@@ -27,26 +21,13 @@ class LeadPilot {
         add_action('admin_post_nopriv_tradepilot_submit_lead', array(__CLASS__, 'handle_submit'));
     }
 
-    /**
-     * LeadPilot
-     * Module: Assets
-     * Function: Load public form styles.
-     * Version: 1.0.0
-     */
     public static function enqueue_assets() {
         wp_enqueue_style('leadpilot-public', TRADEPILOT_AI_URL . 'modules/leadpilot/public.css', array(), TRADEPILOT_AI_VERSION);
     }
 
-    /**
-     * LeadPilot
-     * Module: Shortcode
-     * Function: Render the first smart lead capture form.
-     * Version: 1.0.0
-     */
     public static function render_shortcode($atts = array()) {
         $settings = TradePilot_Settings::get_all();
-        $action   = admin_url('admin-post.php');
-
+        $action = admin_url('admin-post.php');
         ob_start();
         ?>
         <div class="leadpilot-form-wrap">
@@ -81,6 +62,26 @@ class LeadPilot {
                     </select>
                 </label>
 
+                <div class="leadpilot-grid">
+                    <label>Property type
+                        <select name="property_type">
+                            <option value="House">House</option>
+                            <option value="Flat">Flat</option>
+                            <option value="Commercial">Commercial</option>
+                            <option value="Rental property">Rental property</option>
+                        </select>
+                    </label>
+                    <label>Type of enquiry
+                        <select name="issue_type">
+                            <option value="Repair">Repair</option>
+                            <option value="Installation">Installation</option>
+                            <option value="Renovation">Renovation</option>
+                            <option value="Emergency">Emergency</option>
+                            <option value="Quote only">Quote only</option>
+                        </select>
+                    </label>
+                </div>
+
                 <label>Describe the job
                     <textarea name="description" rows="5" required placeholder="Tell us what has happened, what you need, and anything useful about access, timing or photos."></textarea>
                 </label>
@@ -101,12 +102,29 @@ class LeadPilot {
                     </label>
                 </div>
 
-                <label>How urgent is it?
-                    <select name="urgency">
-                        <option value="Flexible">Flexible</option>
-                        <option value="This week">This week</option>
-                        <option value="Within 48 hours">Within 48 hours</option>
-                        <option value="Emergency">Emergency</option>
+                <div class="leadpilot-grid">
+                    <label>How urgent is it?
+                        <select name="urgency">
+                            <option value="Flexible">Flexible</option>
+                            <option value="This week">This week</option>
+                            <option value="Within 48 hours">Within 48 hours</option>
+                            <option value="Emergency">Emergency</option>
+                        </select>
+                    </label>
+                    <label>Best time to contact you
+                        <select name="preferred_contact_time">
+                            <option value="Any time">Any time</option>
+                            <option value="Morning">Morning</option>
+                            <option value="Afternoon">Afternoon</option>
+                            <option value="Evening">Evening</option>
+                        </select>
+                    </label>
+                </div>
+
+                <label>Do you have photos ready?
+                    <select name="has_photos">
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
                     </select>
                 </label>
 
@@ -139,12 +157,6 @@ class LeadPilot {
         return ob_get_clean();
     }
 
-    /**
-     * LeadPilot
-     * Module: Submission Handler
-     * Function: Validate, save and redirect after a public enquiry.
-     * Version: 1.0.0
-     */
     public static function handle_submit() {
         $nonce = isset($_POST['leadpilot_nonce']) ? sanitize_text_field(wp_unslash($_POST['leadpilot_nonce'])) : '';
 
@@ -163,6 +175,7 @@ class LeadPilot {
         }
 
         TradePilot_Audit_Log::record('lead_created', 'New LeadPilot enquiry received.', array('lead_id' => $lead_id));
+        LeadPilot_Notifications::send_new_lead_notifications($lead_id);
 
         $redirect = wp_get_referer() ? wp_get_referer() : home_url('/');
         wp_safe_redirect(add_query_arg('leadpilot_status', 'received', $redirect));
