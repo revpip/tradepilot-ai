@@ -2,6 +2,32 @@
 
 All notable changes to TradePilot AI will be documented here.
 
+## [0.5.0] - 2026-06-28
+
+### Added
+
+- LeadPilot v1.0.0 public lead funnel foundation.
+- `[tradepilot_lead_form]` shortcode.
+- Front-end service selector.
+- Job description capture.
+- Customer name, phone and email capture.
+- Postcode capture.
+- Budget range capture.
+- Urgency capture.
+- Consent checkbox.
+- Public form styling.
+- Lead submission handler.
+- Lead saving into the custom leads table.
+- Audit event when a new lead is created.
+- LeadPilot admin lead list.
+- LeadPilot admin lead detail screen.
+
+### Changed
+
+- Bumped plugin version to 0.5.0.
+- Updated LeadPilot module version to 1.0.0.
+- Updated module registry to report LeadPilot v1.0.0.
+
 ## [0.4.0] - 2026-06-28
 
 ### Added
