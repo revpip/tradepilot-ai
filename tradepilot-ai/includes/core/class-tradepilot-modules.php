@@ -3,7 +3,7 @@
  * TradePilot Core
  * Module: Module Registry
  * Function: Registers and loads TradePilot intelligence modules.
- * Version: 0.3.0
+ * Version: 1.0.0
  *
  * @package TradePilotAI
  */
@@ -18,14 +18,14 @@ class TradePilot_Modules {
      * TradePilot Core
      * Module: Module Registry
      * Function: Return all known modules and default metadata.
-     * Version: 0.3.0
+     * Version: 1.0.0
      */
     public static function registry() {
         return array(
             'leadpilot' => array(
                 'name'        => 'LeadPilot',
                 'description' => 'Smart lead capture, qualification and scoring.',
-                'version'     => '0.1.0',
+                'version'     => '1.0.0',
                 'file'        => 'modules/leadpilot/leadpilot.php',
                 'enabled'     => true,
             ),
@@ -78,7 +78,7 @@ class TradePilot_Modules {
      * TradePilot Core
      * Module: Module Loader
      * Function: Load active module bootstrap files safely.
-     * Version: 0.3.0
+     * Version: 1.0.0
      */
     public static function load() {
         $modules = self::get_modules();
@@ -99,8 +99,8 @@ class TradePilot_Modules {
     /**
      * TradePilot Core
      * Module: Module Registry
-     * Function: Merge stored module states with default registry.
-     * Version: 0.3.0
+     * Function: Merge stored module states with default registry while keeping current metadata fresh.
+     * Version: 1.0.0
      */
     public static function get_modules() {
         $registry = self::registry();
@@ -119,7 +119,7 @@ class TradePilot_Modules {
      * TradePilot Core
      * Module: Module Registry
      * Function: Persist module enabled/disabled state.
-     * Version: 0.3.0
+     * Version: 1.0.0
      */
     public static function set_module_state($module_key, $enabled) {
         $modules = self::get_modules();
