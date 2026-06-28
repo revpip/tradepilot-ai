@@ -34,3 +34,37 @@
 .tradepilot-card p {
     color: #50575e;
 }
+
+.tradepilot-form {
+    max-width: 920px;
+}
+
+.tradepilot-panel {
+    background: #ffffff;
+    border: 1px solid #dcdcde;
+    border-radius: 12px;
+    margin-top: 18px;
+    padding: 20px;
+}
+
+.tradepilot-panel h2 {
+    margin-top: 0;
+}
+
+.tradepilot-panel label {
+    display: block;
+    margin: 14px 0;
+    font-weight: 600;
+}
+
+.tradepilot-panel input[type="text"],
+.tradepilot-panel input[type="email"],
+.tradepilot-panel input[type="number"],
+.tradepilot-panel textarea {
+    display: block;
+    margin-top: 6px;
+}
+
+.tradepilot-table {
+    margin-top: 18px;
+}
