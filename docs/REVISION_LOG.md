@@ -1,5 +1,36 @@
 # Revision Log
 
+## Build LEADPILOT-1.2.0
+
+**Date:** 2026-06-28  
+**Build Name:** Status Persistence & Photo Upload Foundation  
+**Repository:** revpip/tradepilot-ai
+
+### Purpose
+
+Add persistent status helper support and allow customers to attach job photos during enquiry submission.
+
+### Added
+
+- LeadPilot upload helper.
+- Front-end image upload field.
+- Multiple image selection.
+- JPG, PNG and WEBP checks.
+- Upload metadata attached to lead submissions.
+- LeadPilot status persistence helper.
+
+### Changed
+
+- Plugin version bumped to 0.7.0.
+- LeadPilot module version bumped to 1.2.0.
+- Module registry now reports LeadPilot v1.2.0.
+
+### Next Build Target
+
+**LEADPILOT-1.3.0 — Admin Photo Preview & Lead Action Refinement**
+
+---
+
 ## Build LEADPILOT-1.1.0
 
 **Date:** 2026-06-28  
@@ -20,31 +51,6 @@ Enhance the public lead funnel so enquiries collect richer information and autom
 - Customer acknowledgement email.
 - LeadPilot notification class.
 - LeadPilot admin action handler foundation.
-
-### Changed
-
-- Plugin version bumped to 0.6.0.
-- LeadPilot module version bumped to 1.1.0.
-- Module registry now reports LeadPilot v1.1.0.
-
-### Deferred
-
-- Persistent lead status editing.
-- Full admin notes timeline.
-- File/photo upload handling.
-- AI lead scoring.
-
-### Next Build Target
-
-**LEADPILOT-1.2.0 — Status Persistence, Admin Notes & Photo Uploads**
-
-Planned:
-
-- Lead status saved into lead table.
-- Admin notes stored in lead metadata.
-- Photo upload support.
-- Admin photo preview.
-- Safer upload validation.
 
 ---
 
@@ -76,26 +82,3 @@ Turn LeadPilot from a placeholder into a working lead capture system that can re
 - LeadPilot admin lead list.
 - LeadPilot admin lead detail screen.
 - LeadPilot menu callback for the TradePilot AI Leads screen.
-
----
-
-## Build TP-CORE-0.4.0
-
-**Date:** 2026-06-28  
-**Build Name:** Database, Settings Forms & Audit Persistence  
-**Repository:** revpip/tradepilot-ai
-
-### Purpose
-
-Add the first durable platform layer so TradePilot AI can safely store leads, persist audit events, save settings and manage modules through protected admin forms.
-
-### Added
-
-- Custom database installer.
-- Audit log custom table.
-- Lead custom table skeleton.
-- Database schema documentation.
-- Security helper class.
-- Nonce-protected settings save handler.
-- Nonce-protected module save handler.
-- Module enable/disable checkboxes.
