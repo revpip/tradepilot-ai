@@ -3,7 +3,7 @@
  * TradePilot Core
  * Module: Core Loader
  * Function: Loads core services, admin screens and registered intelligence modules.
- * Version: 0.3.0
+ * Version: 0.4.0
  *
  * @package TradePilotAI
  */
@@ -18,10 +18,11 @@ class TradePilot_Core {
      * TradePilot Core
      * Module: Core Loader
      * Function: Initialise plugin systems after WordPress loads.
-     * Version: 0.3.0
+     * Version: 0.4.0
      */
     public static function init() {
         self::load_core_files();
+        self::maybe_upgrade();
         self::load_modules();
 
         if (is_admin()) {
@@ -34,20 +35,38 @@ class TradePilot_Core {
      * TradePilot Core
      * Module: Core Loader
      * Function: Load internal framework files.
-     * Version: 0.3.0
+     * Version: 0.4.0
      */
     private static function load_core_files() {
         require_once TRADEPILOT_AI_PATH . 'includes/core/class-tradepilot-activator.php';
         require_once TRADEPILOT_AI_PATH . 'includes/core/class-tradepilot-modules.php';
+        require_once TRADEPILOT_AI_PATH . 'includes/database/class-tradepilot-database.php';
+        require_once TRADEPILOT_AI_PATH . 'includes/security/class-tradepilot-security.php';
         require_once TRADEPILOT_AI_PATH . 'includes/settings/class-tradepilot-settings.php';
         require_once TRADEPILOT_AI_PATH . 'includes/logs/class-tradepilot-audit-log.php';
     }
 
     /**
      * TradePilot Core
+     * Module: Upgrade Runner
+     * Function: Run safe database upgrades when plugin version changes.
+     * Version: 0.4.0
+     */
+    private static function maybe_upgrade() {
+        $installed = get_option('tradepilot_ai_version');
+
+        if (TRADEPILOT_AI_VERSION !== $installed) {
+            TradePilot_Database::install();
+            update_option('tradepilot_ai_version', TRADEPILOT_AI_VERSION, false);
+            TradePilot_Audit_Log::record('system_upgrade', 'TradePilot AI upgraded.', array('version' => TRADEPILOT_AI_VERSION));
+        }
+    }
+
+    /**
+     * TradePilot Core
      * Module: Module Loader
      * Function: Load registered module stubs.
-     * Version: 0.3.0
+     * Version: 0.4.0
      */
     private static function load_modules() {
         TradePilot_Modules::load();
@@ -57,7 +76,7 @@ class TradePilot_Core {
      * TradePilot Core
      * Module: Activation
      * Function: Run install tasks safely when plugin activates.
-     * Version: 0.3.0
+     * Version: 0.4.0
      */
     public static function activate() {
         require_once TRADEPILOT_AI_PATH . 'includes/core/class-tradepilot-activator.php';
@@ -68,7 +87,7 @@ class TradePilot_Core {
      * TradePilot Core
      * Module: Deactivation
      * Function: Run safe deactivation tasks without deleting data.
-     * Version: 0.3.0
+     * Version: 0.4.0
      */
     public static function deactivate() {
         // Reserved for scheduled task cleanup in a future build.
