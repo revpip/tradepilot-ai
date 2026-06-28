@@ -3,7 +3,7 @@
  * TradePilot Core
  * Module: Activator
  * Function: Handles safe installation and upgrade tasks.
- * Version: 0.3.0
+ * Version: 0.4.0
  *
  * @package TradePilotAI
  */
@@ -17,14 +17,18 @@ class TradePilot_Activator {
     /**
      * TradePilot Core
      * Module: Activator
-     * Function: Save installed version, defaults and module registry.
-     * Version: 0.3.0
+     * Function: Save installed version, defaults, module registry and database tables.
+     * Version: 0.4.0
      */
     public static function activate() {
         if (!current_user_can('activate_plugins')) {
             return;
         }
 
+        require_once TRADEPILOT_AI_PATH . 'includes/database/class-tradepilot-database.php';
+        require_once TRADEPILOT_AI_PATH . 'includes/core/class-tradepilot-modules.php';
+
+        TradePilot_Database::install();
         update_option('tradepilot_ai_version', TRADEPILOT_AI_VERSION, false);
 
         if (!get_option('tradepilot_ai_install_date')) {
@@ -36,7 +40,6 @@ class TradePilot_Activator {
         }
 
         if (!get_option('tradepilot_ai_modules')) {
-            require_once TRADEPILOT_AI_PATH . 'includes/core/class-tradepilot-modules.php';
             update_option('tradepilot_ai_modules', TradePilot_Modules::registry(), false);
         }
     }
