@@ -2,6 +2,22 @@
 
 All notable changes to TradePilot AI will be documented here.
 
+## [0.8.0] - 2026-06-28
+
+### Added
+
+- LeadPilot v1.3.0 admin photo preview.
+- Uploaded photos displayed on lead detail screens.
+- Lead action form added to the lead detail screen.
+- Lead status action wired to the status persistence helper.
+- Admin photo preview styling.
+
+### Changed
+
+- Bumped plugin version to 0.8.0.
+- Updated LeadPilot module version to 1.3.0.
+- Updated module registry to report LeadPilot v1.3.0.
+
 ## [0.7.0] - 2026-06-28
 
 ### Added
@@ -17,10 +33,6 @@ All notable changes to TradePilot AI will be documented here.
 - Bumped plugin version to 0.7.0.
 - Updated LeadPilot module version to 1.2.0.
 - Updated module registry to report LeadPilot v1.2.0.
-
-### Notes
-
-- The upload foundation is now in place. Admin photo previews and deeper lead action UI refinements are next.
 
 ## [0.6.0] - 2026-06-28
 
