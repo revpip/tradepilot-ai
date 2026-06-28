@@ -1,0 +1,36 @@
+.tradepilot-admin .tradepilot-lede {
+    max-width: 780px;
+    font-size: 16px;
+    color: #4b5563;
+}
+
+.tradepilot-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.tradepilot-card {
+    background: #ffffff;
+    border: 1px solid #dcdcde;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.tradepilot-card h2 {
+    margin-top: 0;
+    font-size: 16px;
+}
+
+.tradepilot-card strong {
+    display: block;
+    margin: 8px 0;
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+.tradepilot-card p {
+    color: #50575e;
+}
