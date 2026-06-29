@@ -2,6 +2,24 @@
 
 All notable changes to TradePilot AI will be documented here.
 
+## [1.1.0] - 2026-06-28
+
+### Added
+
+- ReplyPilot v1.0.0 module.
+- Default customer message templates.
+- Merge-tag rendering for lead fields.
+- Automatic customer acknowledgement after new lead creation.
+- Manual template send controls on lead detail screens.
+- ReplyPilot message history stored in lead metadata.
+- ReplyPilot audit log events.
+
+### Changed
+
+- Bumped plugin version to 1.1.0.
+- Registered ReplyPilot as an enabled module.
+- Lead detail screens now include a ReplyPilot messages panel.
+
 ## [1.0.0] - 2026-06-28
 
 ### Added
@@ -33,18 +51,3 @@ All notable changes to TradePilot AI will be documented here.
 - Admin note timeline display.
 - Lead filter, status badge and note styling.
 - Lead metadata helper and filtered query support.
-
-### Changed
-
-- Bumped plugin version to 0.9.0.
-- Improved LeadPilot admin workflow and lead detail layout.
-
-## [0.8.0] - 2026-06-28
-
-### Added
-
-- LeadPilot v1.3.0 admin photo preview.
-- Uploaded photos displayed on lead detail screens.
-- Lead action form added to the lead detail screen.
-- Lead status action wired to the status persistence helper.
-- Admin photo preview styling.
