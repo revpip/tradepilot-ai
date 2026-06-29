@@ -2,6 +2,23 @@
 
 All notable changes to TradePilot AI will be documented here.
 
+## [1.2.0] - 2026-06-28
+
+### Added
+
+- ReplyPilot v1.1.0 editable templates.
+- ReplyPilot admin templates screen.
+- Template subject/body saving with nonce protection.
+- Available merge-tag guidance.
+- Follow-up scheduling foundation.
+- Scheduled follow-up records stored in lead metadata.
+- Scheduling controls on lead detail screens.
+
+### Changed
+
+- Bumped plugin version to 1.2.0.
+- Updated ReplyPilot module version to 1.1.0.
+
 ## [1.1.0] - 2026-06-28
 
 ### Added
@@ -30,24 +47,3 @@ All notable changes to TradePilot AI will be documented here.
 - Smart lead summaries.
 - Recommended next actions.
 - Lead scoring triggered after new lead creation.
-- AI score and temperature saved to the lead table.
-- AI summary and next action saved into lead metadata.
-- AI score column added to the lead list.
-- AI summary panel added to lead detail screens.
-
-### Changed
-
-- Bumped plugin version to 1.0.0.
-- Registered LeadPilot AI as its own module.
-- LeadPilot submission now fires a post-create scoring hook.
-
-## [0.9.0] - 2026-06-28
-
-### Added
-
-- LeadPilot v1.4.0 lead filters.
-- Status, service and urgency filters on the lead list.
-- Extra answer display on lead detail screens.
-- Admin note timeline display.
-- Lead filter, status badge and note styling.
-- Lead metadata helper and filtered query support.
