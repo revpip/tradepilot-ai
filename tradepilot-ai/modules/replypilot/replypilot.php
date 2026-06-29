@@ -3,7 +3,7 @@
  * TradePilot AI
  * Module: ReplyPilot
  * Function: Automated response and follow-up module bootstrap.
- * Version: 1.1.0
+ * Version: 1.2.0
  *
  * @package TradePilotAI
  */
