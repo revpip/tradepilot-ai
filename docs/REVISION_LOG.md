@@ -1,5 +1,38 @@
 # Revision Log
 
+## Build REPLYPILOT-1.1.0
+
+**Date:** 2026-06-28  
+**Build Name:** Editable Templates & Follow-Up Scheduling Foundation  
+**Repository:** revpip/tradepilot-ai
+
+### Purpose
+
+Make ReplyPilot configurable in the WordPress admin area and introduce the first foundation for scheduled follow-up workflows.
+
+### Added
+
+- Editable ReplyPilot templates.
+- ReplyPilot admin template screen.
+- Subject and body editing.
+- Nonce-protected template saving.
+- Merge-tag guidance.
+- Follow-up scheduling foundation.
+- Scheduled follow-up records stored in lead metadata.
+- Schedule controls on lead detail screens.
+- Scheduled follow-up display on lead detail screens.
+
+### Changed
+
+- Plugin version bumped to 1.2.0.
+- ReplyPilot module version bumped to 1.1.0.
+
+### Next Build Target
+
+**REPLYPILOT-1.2.0 — Cron Processing & Follow-Up Rules**
+
+---
+
 ## Build REPLYPILOT-1.0.0
 
 **Date:** 2026-06-28  
@@ -19,38 +52,3 @@ Introduce ReplyPilot as the first messaging layer so leads can receive automatic
 - Manual template sender on lead detail screens.
 - ReplyPilot message history stored in lead metadata.
 - ReplyPilot audit events.
-
-### Changed
-
-- Plugin version bumped to 1.1.0.
-- ReplyPilot registered as an enabled module.
-- Lead detail screens now include ReplyPilot controls.
-
-### Next Build Target
-
-**REPLYPILOT-1.1.0 — Editable Templates & Follow-Up Scheduling Foundation**
-
----
-
-## Build LEADPILOT-AI-1.0.0
-
-**Date:** 2026-06-28  
-**Build Name:** Lead Scoring & Smart Summaries  
-**Repository:** revpip/tradepilot-ai
-
-### Purpose
-
-Introduce the first intelligence layer for LeadPilot so new enquiries are automatically scored, classified and given a suggested next action.
-
-### Added
-
-- LeadPilot AI module.
-- Rule-based scoring engine.
-- Hot/warm/cold temperature classification.
-- Smart lead summary generation.
-- Recommended next action generation.
-- Post-lead-create scoring hook.
-- AI score and temperature saved to the lead table.
-- AI metadata saved with the lead.
-- AI score shown on the lead list.
-- AI summary panel shown on lead detail screens.
