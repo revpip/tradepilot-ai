@@ -2,8 +2,8 @@
 /**
  * TradePilot AI
  * Module: ReplyPilot
- * Function: Sends templated lead replies and stores message events.
- * Version: 1.1.0
+ * Function: Handles templated replies, queued follow-ups and message events.
+ * Version: 1.2.0
  *
  * @package TradePilotAI
  */
@@ -15,10 +15,12 @@ if (!defined('ABSPATH')) {
 class ReplyPilot {
 
     public static function init() {
+        ReplyPilot_Scheduler::init();
         add_action('leadpilot_after_lead_created', array(__CLASS__, 'auto_acknowledge'), 20, 1);
         add_action('admin_post_replypilot_send_template', array(__CLASS__, 'send_template_action'));
         add_action('admin_post_replypilot_schedule_template', array(__CLASS__, 'schedule_template_action'));
         add_action('admin_post_replypilot_save_templates', array(__CLASS__, 'save_templates_action'));
+        add_action('admin_post_replypilot_process_due_now', array(__CLASS__, 'process_due_now_action'));
     }
 
     public static function auto_acknowledge($lead_id) {
@@ -62,6 +64,13 @@ class ReplyPilot {
         ReplyPilot_Templates::save_from_post($_POST);
         TradePilot_Audit_Log::record('replypilot_templates_saved', 'ReplyPilot templates updated.', array());
         wp_safe_redirect(add_query_arg(array('page' => 'tradepilot-ai-replypilot', 'tradepilot_status' => 'saved'), admin_url('admin.php')));
+        exit;
+    }
+
+    public static function process_due_now_action() {
+        TradePilot_Security::verify_admin_action('replypilot_process_due_now', 'replypilot_process_nonce');
+        $count = ReplyPilot_Scheduler::process_due(100);
+        wp_safe_redirect(add_query_arg(array('page' => 'tradepilot-ai-replypilot', 'tradepilot_status' => 'processed', 'processed' => absint($count)), admin_url('admin.php')));
         exit;
     }
 
