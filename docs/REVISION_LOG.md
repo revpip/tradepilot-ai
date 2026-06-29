@@ -1,5 +1,37 @@
 # Revision Log
 
+## Build REPLYPILOT-1.0.0
+
+**Date:** 2026-06-28  
+**Build Name:** Message Templates & Follow-Up Engine  
+**Repository:** revpip/tradepilot-ai
+
+### Purpose
+
+Introduce ReplyPilot as the first messaging layer so leads can receive automatic acknowledgements and admins can manually send templated follow-ups from the lead detail screen.
+
+### Added
+
+- ReplyPilot module.
+- Default message templates.
+- Merge-tag rendering for lead fields.
+- Automatic customer acknowledgement after lead creation.
+- Manual template sender on lead detail screens.
+- ReplyPilot message history stored in lead metadata.
+- ReplyPilot audit events.
+
+### Changed
+
+- Plugin version bumped to 1.1.0.
+- ReplyPilot registered as an enabled module.
+- Lead detail screens now include ReplyPilot controls.
+
+### Next Build Target
+
+**REPLYPILOT-1.1.0 — Editable Templates & Follow-Up Scheduling Foundation**
+
+---
+
 ## Build LEADPILOT-AI-1.0.0
 
 **Date:** 2026-06-28  
@@ -22,38 +54,3 @@ Introduce the first intelligence layer for LeadPilot so new enquiries are automa
 - AI metadata saved with the lead.
 - AI score shown on the lead list.
 - AI summary panel shown on lead detail screens.
-
-### Changed
-
-- Plugin version bumped to 1.0.0.
-- LeadPilot now fires a scoring hook after lead creation.
-- LeadPilot AI registered as a standalone enabled module.
-
-### Next Build Target
-
-**REPLYPILOT-1.0.0 — Message Templates & Follow-Up Engine**
-
----
-
-## Build LEADPILOT-1.4.0
-
-**Date:** 2026-06-28  
-**Build Name:** Lead Filters & Admin Workflow Polish  
-**Repository:** revpip/tradepilot-ai
-
-### Purpose
-
-Improve lead management by adding list filters and clearer lead detail information for operational use.
-
-### Added
-
-- Status filter on the LeadPilot lead list.
-- Service filter on the LeadPilot lead list.
-- Urgency filter on the LeadPilot lead list.
-- Extra answer display on lead detail screens.
-- Admin note timeline display.
-- Filter bar styling.
-- Status badge styling.
-- Note timeline styling.
-- Lead metadata helper.
-- Filtered lead query support.
