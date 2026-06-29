@@ -3,7 +3,7 @@
  * TradePilot Core
  * Module: Module Registry
  * Function: Registers and loads TradePilot intelligence modules.
- * Version: 1.6.0
+ * Version: 1.7.0
  *
  * @package TradePilotAI
  */
@@ -47,7 +47,7 @@ class TradePilot_Modules {
             'replypilot' => array(
                 'name'        => 'ReplyPilot',
                 'description' => 'Automated customer messaging and follow-ups.',
-                'version'     => '1.0.0',
+                'version'     => '1.1.0',
                 'file'        => 'modules/replypilot/replypilot.php',
                 'enabled'     => true,
             ),
@@ -77,43 +77,27 @@ class TradePilot_Modules {
 
     public static function load() {
         $modules = self::get_modules();
-
         foreach ($modules as $key => $module) {
-            if (empty($module['enabled']) || empty($module['file'])) {
-                continue;
-            }
-
+            if (empty($module['enabled']) || empty($module['file'])) { continue; }
             $path = TRADEPILOT_AI_PATH . $module['file'];
-
-            if (file_exists($path)) {
-                require_once $path;
-            }
+            if (file_exists($path)) { require_once $path; }
         }
     }
 
     public static function get_modules() {
         $registry = self::registry();
-        $stored   = get_option('tradepilot_ai_modules', array());
-
+        $stored = get_option('tradepilot_ai_modules', array());
         foreach ($registry as $key => $module) {
-            if (isset($stored[$key]['enabled'])) {
-                $registry[$key]['enabled'] = (bool) $stored[$key]['enabled'];
-            }
+            if (isset($stored[$key]['enabled'])) { $registry[$key]['enabled'] = (bool) $stored[$key]['enabled']; }
         }
-
         return $registry;
     }
 
     public static function set_module_state($module_key, $enabled) {
         $modules = self::get_modules();
-
-        if (!isset($modules[$module_key])) {
-            return false;
-        }
-
+        if (!isset($modules[$module_key])) { return false; }
         $modules[$module_key]['enabled'] = (bool) $enabled;
         update_option('tradepilot_ai_modules', $modules, false);
-
         return true;
     }
 }
